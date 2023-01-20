@@ -8,12 +8,12 @@ const useSelectList = (label, opciones) => {
       <>
         <div className="row mb-4">
           <label
-            className="col-sm-3 form-label text-capitalize fw-bold"
+            className="col-sm-12 col-md-12 col-lg-3 form-label text-capitalize fw-bold"
             htmlFor="tipoUsuario"
           >
-            {label}: <span className="text-danger">*</span>
+            {label}<span className="text-danger"> *</span>
           </label>
-          <div className="col-sm-9">
+          <div className="col-sm-12 col-md-12 col-lg-9">
             <select
               className="form-select"
               value={data}

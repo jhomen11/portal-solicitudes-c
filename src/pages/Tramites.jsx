@@ -57,12 +57,12 @@ const Tramites = () => {
 
           <div className="row mb-4">
             <label
-              className="col-sm-3 form-label text-capitalize fw-bold"
+              className="col-sm-12 col-md-12 col-lg-3 form-label text-capitalize fw-bold"
               htmlFor="tipoSolicitud"
             >
               Tipo: <span className="text-danger">*</span>
             </label>
-            <div className="col-sm-9">
+            <div className="col-sm-12 col-md-12 col-lg-9">
               <select
                 className="form-select"
                 onChange={(e) => setCodTipoSolicitud(e.target.value)}
@@ -86,12 +86,12 @@ const Tramites = () => {
 
           <div className="row mb-4">
             <label
-              className="col-sm-3 form-label text-capitalize fw-bold"
+              className="col-sm-12 col-md-12 col-lg-3 form-label text-capitalize fw-bold"
               htmlFor="tipoUsuario"
             >
               Concepto: <span className="text-danger">*</span>
             </label>
-            <div className="col-sm-9">
+            <div className="col-sm-12 col-md-12 col-lg-9">
               <select
                 className="form-select"
                 onChange={(e) => setCodTipificacion(e.target.value)}
@@ -120,10 +120,10 @@ const Tramites = () => {
             handleChange={(e) => setCodTipificacion(e.target.value)}
           /> */}
           <div className="row">
-            <label className="col-sm-3 fw-bold" htmlFor="descripcion">
+            <label className="col-sm-12 col-md-12 col-lg-3 fw-bold" htmlFor="descripcion">
               Descripción: <span className="text-danger">*</span>
             </label>
-            <div className="col-sm-9">
+            <div className="col-sm-12 col-md-12 col-lg-9">
               <textarea className="form-control" id="descripcion"></textarea>
             </div>
           </div>
