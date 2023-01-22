@@ -9,11 +9,12 @@ const Tramites = () => {
     tipoUsuario,
     tipoSolicitud,
     tipificacion,
+    tipoTipificacion,
     isLoading,
     getTipoSolicitud,
     getListarTipificacion,
+    getListarTipoTipificacion,
   } = useAppContext();
-
 
   const [SelectTipoUsuario, mundo] = useSelectList(
     "Tipo Usuario:",
@@ -22,7 +23,7 @@ const Tramites = () => {
 
   const [codtipoSolicitud, setCodTipoSolicitud] = useState("");
   const [codTipificacion, setCodTipificacion] = useState("");
-  //   const [tipoTipificacion, setTipoTipificacion] = useState("");
+  const [codTipoTipificacion, setCodTipoTipificacion] = useState("");
 
   useEffect(() => {
     if (mundo) {
@@ -37,10 +38,15 @@ const Tramites = () => {
     if (codtipoSolicitud) {
       const objTipificacion = { idTipoSolicitud: codtipoSolicitud };
       getListarTipificacion(objTipificacion);
-      
     }
   }, [codtipoSolicitud]);
-  
+
+  useEffect(() => {
+    if (codTipificacion) {
+      const objTipificacion = { idSubTipoSolicitud: codTipificacion };
+      getListarTipoTipificacion(objTipificacion);
+    }
+  }, [codTipificacion]);
 
   return (
     <>
@@ -96,7 +102,7 @@ const Tramites = () => {
                 className="form-select"
                 onChange={(e) => setCodTipificacion(e.target.value)}
                 id="tipoUsuario"
-                disabled={!mundo && true}
+                disabled={!codtipoSolicitud && true}
               >
                 <option value="">--Seleccione--</option>
                 {tipoSolicitud && tipificacion
@@ -113,31 +119,62 @@ const Tramites = () => {
             </div>
           </div>
 
-          {/* <SelectList
-            titulo="concepto"
-            data = {tipificacion}
-            id = "idSubTipoSolicitud"
-            handleChange={(e) => setCodTipificacion(e.target.value)}
-          /> */}
-          <div className="row">
-            <label className="col-sm-12 col-md-12 col-lg-3 fw-bold" htmlFor="descripcion">
-              Descripción: <span className="text-danger">*</span>
+          <div className="row mb-4">
+            <label
+              className="col-sm-12 col-md-12 col-lg-3 form-label text-capitalize fw-bold"
+              htmlFor="tipoUsuario"
+            >
+              Detalle: <span className="text-danger">*</span>
             </label>
             <div className="col-sm-12 col-md-12 col-lg-9">
-              <textarea className="form-control" id="descripcion"></textarea>
+              <select
+                className="form-select"
+                onChange={(e) => setCodTipoTipificacion(e.target.value)}
+                id="tipoUsuario"
+                disabled={!codtipoSolicitud && true}
+              >
+                <option value="">--Seleccione--</option>
+                {tipificacion && tipoTipificacion
+                  ? tipoTipificacion.listado.map((opcion) => (
+                      <option
+                        key={opcion.idDetalleSolicitud}
+                        value={opcion.idDetalleSolicitud}
+                      >
+                        {opcion.descripcion}
+                      </option>
+                    ))
+                  : null}
+              </select>
             </div>
           </div>
+          {codTipoTipificacion ? (
+            <div className="row">
+              <label
+                className="col-sm-12 col-md-12 col-lg-3 fw-bold"
+                htmlFor="descripcion"
+              >
+                Descripción: <span className="text-danger">*</span>
+              </label>
+              <div className="col-sm-12 col-md-12 col-lg-9">
+                <textarea className="form-control" id="descripcion"></textarea>
+              </div>
+            </div>
+          ) : null}
         </div>
-        <div className="col-9 mt-4">
-          <h3>Datos Solicitud</h3>
-          <p>
-            Por favor complete los datos a continuación asociados al tipo de
-            solicitud a realizar
-          </p>
-        </div>
-        <div className="col-9 border p-4">
-          <InputFile />
-        </div>
+        {codTipoTipificacion ? (
+          <>
+            <div className="col-9 mt-4">
+              <h3>Datos Solicitud</h3>
+              <p>
+                Por favor complete los datos a continuación asociados al tipo de
+                solicitud a realizar
+              </p>
+            </div>
+            <div className="col-9 border p-4">
+              <InputFile />
+            </div>
+          </>
+        ) : null}
       </div>
     </>
   );

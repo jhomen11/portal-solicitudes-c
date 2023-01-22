@@ -9,6 +9,7 @@ const AppProvaider = ({ children }) => {
     const [tipoUsuario, setTipoUsuario] = useState("");
     const [tipoSolicitud, setTipoSolicitud] = useState("");
     const [tipificacion, setTipificacion] = useState("")
+    const [tipoTipificacion, setTipoTipificacion] = useState("")
 
     const getTipoUsuario = async () => {
 
@@ -50,6 +51,20 @@ const AppProvaider = ({ children }) => {
 
     }
 
+    const getListarTipoTipificacion = async (codtipoSolicitud) => {
+        const request = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(codtipoSolicitud)
+          };
+        const URL = `${process.env.REACT_APP_WS_SOLICITUDES_CIUDAD}/RS_ListarTipoTipificacion`
+        const resp = await fetch(URL, request)
+        const data = await resp.json()
+        setTipoTipificacion(data)
+        setIsLoading(false)
+
+    }
+
     useEffect(()=> {
         getTipoUsuario()
     },[])
@@ -59,9 +74,11 @@ const AppProvaider = ({ children }) => {
             value={{
                 getTipoSolicitud,
                 getListarTipificacion,
+                getListarTipoTipificacion,
                 tipoUsuario,
                 tipoSolicitud,
                 tipificacion,
+                tipoTipificacion,
                 isLoading
             }}
         >

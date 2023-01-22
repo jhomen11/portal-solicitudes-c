@@ -4,6 +4,7 @@ import "./App.css";
 import Layout from "./layout/Layout";
 import Tramites from "./pages/Tramites";
 import { AppProvaider } from "./context/AppProvaider";
+import FormDatosUsuario from "./pages/FormDatosUsuario";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             {/* Rutas Publicas */}
             <Route path="/" element={<Layout />}>
               <Route index element={<Tramites />} />
+              <Route path="form-datos-usuario" element={<FormDatosUsuario/>}/>
             </Route>
           </Routes>
         </AppProvaider>
