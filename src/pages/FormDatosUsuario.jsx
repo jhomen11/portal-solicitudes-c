@@ -34,8 +34,7 @@ const FormDatosUsuario = () => {
                 <div className="col d-flex flex-column flex-md-row">
                   <div className="col-12 col-sm-12 col-md-6 d-flex flex-column flex-lg-row pe-4">
                     <label className="form-label col-sm-5 col-md-7 col-lg-4 fw-bold">
-                      Tipo identificacion:{" "}
-                      <span className="text-danger">*</span>
+                      Tipo identificacion: <span className="text-danger">*</span>
                     </label>
                     <div className="col-sm-12 col-md-12 col-lg-7">
                       <select className="form-select">
