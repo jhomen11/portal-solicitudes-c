@@ -18,7 +18,7 @@ const Banner = () => {
             </p>
           </div>
           <div className="row justify-content-center">
-            <div className="col-9 border">
+            <div className="col border">
               <p className="p-2 m-0">
                 Recomendación: Si tienes dudas sobre cómo realizar este
                 servicio, consulta la pestaña "Instrucciones" justo a la derecha
