@@ -13,7 +13,7 @@ const useSelectList = (label, opciones) => {
           >
             {label}<span className="text-danger"> *</span>
           </label>
-          <div className="col-sm-12 col-md-12 col-lg-9">
+          <div className="col-sm-12 col-md-12 col-lg-7">
             <select
               className="form-select"
               value={data}
@@ -21,7 +21,7 @@ const useSelectList = (label, opciones) => {
               id="tipoUsuario"
             >
               <option value="">--Seleccione--</option>
-              {opciones.listado.map(opcion => (
+              {opciones.map(opcion => (
                 <option key={opcion.idTipoUsuario} value={opcion.idTipoUsuario}>{opcion.nombreTipoUsuario}</option>
               ))}
             </select>

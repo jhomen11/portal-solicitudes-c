@@ -8,7 +8,7 @@ import FormDatosUsuario from "./pages/FormDatosUsuario";
 
 function App() {
   return (
-    <div className="container">
+    <div className="">
       <BrowserRouter>
         <AppProvaider>
           <Routes>

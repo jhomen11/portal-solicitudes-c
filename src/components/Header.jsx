@@ -1,20 +1,23 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import logofonasa from "../img/logofonasa.png"
+import logofonasa1 from "../img/logofonasa1.svg";
+import logofonasa from "../img/logofonasa.png";
 
 function Header() {
   return (
     <>
+    <div className="navbar navbar-light pt-4 bg-primary ">
       <div className="container">
-        
-        <div className="row my-4">
-         <Link to={"/"} className="navbar-brand">
-         <img src={logofonasa} alt="" />
-         </Link>   
-
+        <div className="row">
+          <Link to={"/"} className="">
+            <img className="logo" src={logofonasa1} alt="" />
+            {/* <img src={logofonasa} alt="" /> */}
+          </Link>
         </div>
+      
+        <hr />
       </div>
-      {/* <h2 className="text-center mt-4 mb-4">Devolución de Pagos en Excesos</h2> */}
-     
+      </div>
     </>
   );
 }
