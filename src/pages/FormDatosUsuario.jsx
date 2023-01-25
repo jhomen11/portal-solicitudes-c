@@ -49,10 +49,8 @@ const FormDatosUsuario = () => {
   }, [region]);
 
   useEffect(() => {
-    if (identificacion) {
-      getNombreRut(identificacion);
-    }
-  }, []);
+    console.log(identificacion)
+  }, [identificacion]);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -64,13 +62,14 @@ const FormDatosUsuario = () => {
 
   const handleChangeRun = ({ target }) => {
     const { name, value } = target;
-    setIdentificacion( value);
-    console.log(identificacion)
-    const objRun = { run: identificacion };
-    // getNombreRut(objRun);
-    console.log("CAMBIO");
+    setIdentificacion(value);
+    const rutValido = true;
+    if (rutValido) {
+      const objRun = { run: identificacion };
+      // getNombreRut(objRun);
+    }
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(infoUsuario);

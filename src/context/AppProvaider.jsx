@@ -15,6 +15,7 @@ const AppProvaider = ({ children }) => {
   const [listaTipoIdentificacion, setListaTipoIdentificacion] = useState([]);
   const [listaGenero, setListaGenero] = useState([]);
   const [listaNacionalidad, setListaNacionalidad] = useState([]);
+  const [datosPersona, setDatosPersona] = useState({});
   const [desplegarRquisitos, setDesplegarRequisitos] = useState(0);
 
   //* LISTAR TIPO USUARIO
@@ -91,7 +92,7 @@ const AppProvaider = ({ children }) => {
     }
   };
 
-  //* CONSULTA NOMBRE
+  //* CONSULTA NOMBRE PERSONA
   const getNombreRut = async (rut) => {
     // console.log(rut)
     const request = {
@@ -102,7 +103,7 @@ const AppProvaider = ({ children }) => {
     const URL = `${process.env.REACT_APP_WS_SOLICITUDES_CIUDAD}/RS_InformacionPersonaBD/ConsultaNombres`;
     const resp = await fetch(URL, request);
     const data = await resp.json();
-    console.log(data)    
+    setDatosPersona(data)  
   };
 
   //* LISTAR REGIONES
