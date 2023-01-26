@@ -86,7 +86,7 @@ const AppProvaider = ({ children }) => {
     const resp = await fetch(URL, request);
     const data = await resp.json();
     if (data.codigo === 0) {
-      setListaRequisitos(data.listado);
+      setListaRequisitos(data);
       setDesplegarRequisitos(1);
       console.log(data);
     }
@@ -103,7 +103,8 @@ const AppProvaider = ({ children }) => {
     const URL = `${process.env.REACT_APP_WS_SOLICITUDES_CIUDAD}/RS_InformacionPersonaBD/ConsultaNombres`;
     const resp = await fetch(URL, request);
     const data = await resp.json();
-    setDatosPersona(data)  
+    setDatosPersona(data)
+    return data
   };
 
   //* LISTAR REGIONES
@@ -245,6 +246,7 @@ const AppProvaider = ({ children }) => {
         listaGenero,
         listaNacionalidad,
         desplegarRquisitos,
+        datosPersona,
         isLoading,
       }}
     >

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { validador } from "../helpers/validaRut";
 import useAppContext from "../hooks/useAppContext";
 
 const FormDatosUsuario = () => {
@@ -9,12 +10,14 @@ const FormDatosUsuario = () => {
     listaGenero,
     listaComunas,
     listaNacionalidad,
+    datosPersona,
     getNombreRut,
     getListarComunas,
   } = useAppContext();
+  const [identificacion, setIdentificacion] = useState("");
+
   const [infoUsuario, setInfoUsuario] = useState({
     tipoIdentificaion: "",
-    identificacion: "",
     nacionalidad: "",
     nombres: "",
     telefono1: "",
@@ -26,7 +29,7 @@ const FormDatosUsuario = () => {
     email: "",
     region: "",
   });
-  const [identificacion, setIdentificacion] = useState("");
+  const [existePersona, setExistePersona] = useState(false);
 
   const {
     tipoIdentificaion,
@@ -48,10 +51,6 @@ const FormDatosUsuario = () => {
     }
   }, [region]);
 
-  useEffect(() => {
-    console.log(identificacion)
-  }, [identificacion]);
-
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setInfoUsuario({
@@ -61,21 +60,89 @@ const FormDatosUsuario = () => {
   };
 
   const handleChangeRun = ({ target }) => {
-    const { name, value } = target;
+    const { value } = target;
     setIdentificacion(value);
-    const rutValido = true;
-    if (rutValido) {
+  };
+
+  const rutValido = validador(identificacion);
+
+  useEffect(() => {
+    if (!rutValido) {
+      
+      console.log("RUN INVALIDO");
+    }
+  }, [identificacion]);
+
+  const verificaRun = async () => {
+    if (rutValido && identificacion.length > 4) {
       const objRun = { run: identificacion };
-      // getNombreRut(objRun);
+      const existePersona = await getNombreRut(objRun);
+      if (existePersona.codigo === 0) {
+        setExistePersona(true);
+      }
+      console.log(existePersona);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(infoUsuario);
+    console.log([infoUsuario, { identificacion: identificacion }]);
   };
   return (
     <div className="container">
+
+<div className="row">
+              {" "}
+              <strong
+                style={{ width: "40%", textAlign: "center", marginBottom: 5 }}
+                className="hola "
+              >
+                {" "}
+                Paso 1{" "}
+              </strong>{" "}
+              <strong
+                style={{ width: "20%", textAlign: "center", marginBottom: 5 }}
+                className="hola"
+              >
+                {" "}
+                Paso 2{" "}
+              </strong>{" "}
+            </div>
+
+            <div className="prueba" style={{ height: "10px", width: "50%" }}>
+              {" "}
+            </div>
+
+            <div className="progress">
+              <div
+                className="progress-bar "
+                role="progressbar"
+                style={{ width: "50%" }}
+              >
+                {" "}
+                <strong> </strong>{" "}
+              </div>
+            </div>
+            <div className="prueba" style={{ height: "10px", width: "50%" }}>
+              {" "}
+            </div>
+            <div className="row">
+              <strong
+                style={{ width: "40%", textAlign: "center" }}
+                className="hola"
+              >
+                {" "}
+                Tipo Solicitud{" "}
+              </strong>{" "}
+              <strong
+                style={{ width: "20%", textAlign: "center" }}
+                className="hola"
+              >
+                {" "}
+                Datos Solicitante y Afectado{" "}
+              </strong>{" "}
+            </div>
+
       <div className="row justify-content-center">
         <div className="col">
           <h3>Datos Solicitud</h3>
@@ -132,6 +199,7 @@ const FormDatosUsuario = () => {
                           name="identificacion"
                           value={identificacion}
                           onChange={handleChangeRun}
+                          onKeyUp={verificaRun}
                           id="identificacion"
                         />
                       </div>
@@ -195,6 +263,7 @@ const FormDatosUsuario = () => {
                         type="text"
                         className="form-control"
                         name="nombres"
+                        value={existePersona ? datosPersona.nombres : nombres}
                         onChange={handleChange}
                         id="nombres"
                       />
@@ -212,6 +281,11 @@ const FormDatosUsuario = () => {
                         type="text"
                         className="form-control"
                         name="apellidos"
+                        value={
+                          existePersona
+                            ? `${datosPersona.primerApellido} ${datosPersona.segundoApellido}`
+                            : apellidos
+                        }
                         onChange={handleChange}
                         id="apellidos"
                       />
@@ -292,15 +366,15 @@ const FormDatosUsuario = () => {
                   <div className="col-12 col-sm-12  d-flex flex-column flex-md-row  pe-4 mb-3">
                     <label
                       className="form-label col-sm-5 col-md-6 col-lg-5 fw-bold"
-                      htmlFor="tipoIdentificacion"
+                      htmlFor="comuna"
                     >
                       Comuna: <span className="text-danger">*</span>
                     </label>
                     <div className="col-sm-12 col-md-6 col-lg-7">
                       <select
                         className="form-select"
-                        id="tipoIdentificacion"
-                        name="tipoIdentificaion"
+                        id="comuna"
+                        name="comuna"
                         onChange={handleChange}
                       >
                         <option>Seleccione</option>
@@ -407,7 +481,7 @@ const FormDatosUsuario = () => {
 
           <p className="text-danger fw-bold mt-3">* Datos obligatorios</p>
           <div className="row justify-content-center">
-            <div className="col text-center">
+            <div className="col text-center mb-4">
               <Link to={"/"} className="btn btn-secondary me-2">
                 Volver
               </Link>

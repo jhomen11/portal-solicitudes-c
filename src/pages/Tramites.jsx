@@ -70,6 +70,39 @@ const Tramites = () => {
 
   return (
     <div className="container">
+    <div className="my-5">
+          
+          <strong
+            style={{ width: "40%", textAlign: "center", marginBottom: 5 }}
+            className="hola"
+          >
+            {" "}
+            Paso 1{" "}
+          </strong>{" "}
+          <div className="prueba" style={{ height: "10px", width: "20%" }}>
+            {" "}
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar "
+              role="progressbar"
+              style={{ width: "20%" }}
+            >
+              {" "}
+              <strong> </strong>{" "}
+            </div>
+          </div>
+          <div className="prueba" style={{ height: "10px", width: "20%" }}>
+            {" "}
+          </div>
+          <strong
+            style={{ width: "40%", textAlign: "center" }}
+            className="hola"
+          >
+            {" "}
+            Tipo Solicitud{" "}
+          </strong>{" "}
+        </div>
       <div className="row justify-content-center">
         <div className="col-9">
           <h3>Datos Solicitud</h3>
@@ -222,7 +255,7 @@ const Tramites = () => {
       </div>
       <p className="text-danger fw-bold mt-3">* Datos obligatorios</p>
       <div className="row justify-content-center">
-        <div className="col text-center">
+        <div className="col text-center mb-4">
           <Link to={"/form-datos-usuario"} className="btn btn-primary me-2">
             Continuar
           </Link>

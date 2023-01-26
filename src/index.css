@@ -1,19 +1,40 @@
+img {
+  position: absolute;
+  top: 0;
+  width: 115px;
+}
 
-  img{
-    position: absolute;
-      top: 0;
-      width: 115px;
-  }
+.footer {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0a132d;
+  color: #FFFFFF;
+}
+.bg-light {
+  background-color: #dbe7ed !important;
+}
+
+.progress-bar {
+ 
+  background-color: #198754 !important;
   
-  .footer {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    padding: 0;
-    overflow: hidden;
-    background-color: #0a132d;
-  }
-  .bg-light {
-    background-color: #dbe7ed!important;
-  }
-  
+}
+
+.hola {
+  color: #0063ab;
+  margin-top: 10px;
+  padding: 0px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prueba {
+  color: #0063ab;
+  text-align: end;
+  border-right: 5px solid #198754;
+  border-left: left 5px solid #198754;
+}
